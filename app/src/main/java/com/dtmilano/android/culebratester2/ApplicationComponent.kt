@@ -102,6 +102,7 @@ interface ApplicationComponent {
     fun inject(getClassName: UiObject.GetClassName)
     fun inject(getChildCount: UiObject2.GetChildCount)
     fun inject(getChildren: UiObject2.GetChildren)
+    fun inject(getParent: UiObject2.GetParent)
     fun inject(getBounds: UiObject.GetBounds)
     fun inject(getChild: UiObject.GetChild)
 //    fun inject(uiAutomatorHelper: UiAutomatorHelper)

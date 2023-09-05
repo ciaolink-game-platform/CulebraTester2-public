@@ -222,6 +222,33 @@ class UiObject2 {
         }
     }
 
+    @Location("/{oid}/getParent")
+    /*inner*/ class GetParent(val oid: Int) {
+        private var holder: Holder
+
+        @Inject
+        lateinit var holderHolder: HolderHolder
+
+        @Inject
+        lateinit var objectStore: ObjectStore
+
+        init {
+            CulebraTesterApplication().appComponent.inject(this)
+            holder = holderHolder.instance
+        }
+
+        fun response(): ObjectRef {
+            uiObject2(oid, objectStore)?.let {
+                it.parent?.let { uiObject2Parent ->
+                    val oid = objectStore.put(uiObject2Parent)
+                    return@response ObjectRef(oid, uiObject2Parent::class.jvmName)
+                }
+                throw notFound(oid)
+            }
+            throw notFound(oid)
+        }
+    }
+
     @Location("/{oid}/getChildCount")
     /*inner*/ class GetChildCount(
         val oid: Int,

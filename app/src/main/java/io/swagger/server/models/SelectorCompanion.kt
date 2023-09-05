@@ -11,7 +11,7 @@ import com.google.gson.Gson
  * Constructor from [UiObject2].
  */
 fun Selector(obj: UiObject2): Selector = Selector(
-    obj.isCheckable, obj.isChecked, obj.className, obj.isClickable, null, obj.contentDescription,
+    obj.isEnabled, obj.isCheckable, obj.isChecked, obj.className, obj.isClickable, null, obj.contentDescription,
     null, null,
     obj.applicationPackage, obj.resourceName, obj.isScrollable, obj.text, null, null
 )
@@ -20,6 +20,7 @@ fun Selector(obj: UiObject2): Selector = Selector(
  * Constructor from [UiObject].
  */
 fun Selector(obj: UiObject): Selector = Selector(
+    obj.isEnabled,
     obj.isCheckable,
     obj.isChecked,
     obj.className,

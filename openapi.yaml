@@ -1297,6 +1297,39 @@ paths:
         default:
           $ref: '#/components/responses/error'
       summary: The child
+  /uiObject/{oid}/getParent:
+    get:
+      description: Creates a new UiObject for a child view that is under the present UiObject.
+      parameters:
+        - description: The object ID
+          in: path
+          name: oid
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                className: android.widget.TextView
+                oid: 1
+              schema:
+                $ref: '#/components/schemas/ObjectRef'
+          description: Object found
+        '404':
+          content:
+            application/json:
+              example:
+                errorMessage: Object not found
+                errorStatusResponse: 1001
+                status: ERROR
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+          description: Object not found
+        default:
+          $ref: '#/components/responses/error'
+      summary: The parent
   /uiObject/{oid}/getChildCount:
     get:
       description: Counts the child views immediately under the present UiObject.
@@ -2335,6 +2368,8 @@ components:
         For example `Pattern:^[a-z]+$`
       type: object
       properties:
+        enabled:
+          type: boolean
         checkable:
           type: boolean
         checked:
