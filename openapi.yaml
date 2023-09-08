@@ -1297,7 +1297,7 @@ paths:
         default:
           $ref: '#/components/responses/error'
       summary: The child
-  /uiObject/{oid}/getParent:
+  /uiObject2/{oid}/getParent:
     get:
       description: Creates a new UiObject for a child view that is under the present UiObject.
       parameters:
